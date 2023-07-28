@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent, useEffect } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import './SpinButton.css';
 
 const SpinButton: React.FC = () => {
@@ -13,6 +13,7 @@ const SpinButton: React.FC = () => {
 			return;
 		}
 		setCount((prevCount) => prevCount + 1);
+		setMessage(`성인 승객 추가 ${count + 1} `);
 	};
 
 	const decrement = () => {
@@ -21,9 +22,8 @@ const SpinButton: React.FC = () => {
 			return;
 		}
 		setCount((prevCount) => prevCount - 1);
+		setMessage(`성인 승객 감소 ${count - 1} `);
 	};
-
-	useEffect(() => setMessage(`성인 ${count} 텍스트 숫자만 수정`), [count]);
 
 	const toggleTooltip = (event: MouseEvent<HTMLDivElement>) => {
 		setIsTooltipVisible(!isTooltipVisible);
@@ -64,6 +64,7 @@ const SpinButton: React.FC = () => {
 					readOnly
 					className='spinButtonInput'
 					value={count}
+					aria-label='성인 승객 인원'
 				/>
 				<button
 					type='button'
